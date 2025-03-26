@@ -1,9 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// At the top of your generate-strategy file
-export const config = {
-  maxDuration: 60, // Increase timeout to 60 seconds (or maximum allowed by your host)
-};
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 export async function POST(request) {
   try {
