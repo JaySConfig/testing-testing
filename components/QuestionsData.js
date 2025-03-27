@@ -4,23 +4,23 @@ export const sections = [
         title: 'Your Profile',
         description: "Let's start with some basic information about you and your work.",
         questions: [
-          {
-            id: 'industry',
-            question: 'What industry do you work in?',
-            type: 'singleSelect',
-            options: [
-              { value: 'technology', label: 'Technology & Software' },
-              { value: 'finance', label: 'Finance & Banking' },
-              { value: 'healthcare', label: 'Healthcare & Wellness' },
-              { value: 'education', label: 'Education & Training' },
-              { value: 'marketing', label: 'Marketing & Advertising' },
-              { value: 'ecommerce', label: 'E-commerce & Retail' },
-              { value: 'consulting', label: 'Consulting & Professional Services' },
-              { value: 'manufacturing', label: 'Manufacturing & Engineering' },
-              { value: 'media', label: 'Media & Entertainment' },
-              { value: 'other', label: 'Other' }
-            ]
-          },
+          // {
+          //   id: 'industry',
+          //   question: 'What industry do you work in?',
+          //   type: 'singleSelect',
+          //   options: [
+          //     { value: 'technology', label: 'Technology & Software' },
+          //     { value: 'finance', label: 'Finance & Banking' },
+          //     { value: 'healthcare', label: 'Healthcare & Wellness' },
+          //     { value: 'education', label: 'Education & Training' },
+          //     { value: 'marketing', label: 'Marketing & Advertising' },
+          //     { value: 'ecommerce', label: 'E-commerce & Retail' },
+          //     { value: 'consulting', label: 'Consulting & Professional Services' },
+          //     { value: 'manufacturing', label: 'Manufacturing & Engineering' },
+          //     { value: 'media', label: 'Media & Entertainment' },
+          //     { value: 'other', label: 'Other' }
+          //   ]
+          // },
           {
             id: 'role',
             question: 'What is your professional role?',
@@ -34,18 +34,18 @@ export const sections = [
               { value: 'other', label: 'Other' }
             ]
           },
-          {
-            id: 'offering',
-            question: 'What products or services do you or your company offer?',
-            type: 'tagInput',
-            description: 'Enter key products, services or solutions you provide',
-            maxSelections: 5,
-            suggestions: [
-              'Software Solutions', 'Consulting Services', 'Financial Advice',
-              'Digital Marketing', 'Training Programs', 'Healthcare Services',
-              'E-commerce Platform', 'Manufacturing Solutions'
-            ]
-          }
+          // {
+          //   id: 'offering',
+          //   question: 'What products or services do you or your company offer?',
+          //   type: 'tagInput',
+          //   description: 'Enter key products, services or solutions you provide',
+          //   maxSelections: 5,
+          //   suggestions: [
+          //     'Software Solutions', 'Consulting Services', 'Financial Advice',
+          //     'Digital Marketing', 'Training Programs', 'Healthcare Services',
+          //     'E-commerce Platform', 'Manufacturing Solutions'
+          //   ]
+          // }
         ]
       },
     {
@@ -101,32 +101,32 @@ export const sections = [
           question: 'What are the biggest challenges your audience faces?',
           type: 'tagInput',
           description: 'Identify the key struggles your audience encounters.',
-          minSelections: 3,
-          maxSelections: 5,
+          minSelections: 2,
+          maxSelections: 3,
           suggestions: [
             'Scaling their business', 'Generating consistent leads', 'Navigating industry changes', 'Managing remote teams',
             'Breaking into leadership roles'
           ]
         },
-        {
-          id: 'audienceFears',
-          question: 'What are your audience’s biggest fears when it comes to their industry or career?',
-          type: 'tagInput',
-          description: 'Recognize the concerns that may hold your audience back.',
-          minSelections: 3,
-          maxSelections: 5,
-          suggestions: [
-            'Losing relevance in the industry', 'Struggling to stand out', 'Failing to generate enough revenue', 'Losing job security',
-            'Being seen as an imposter'
-          ]
-        },
+        // {
+        //   id: 'audienceFears',
+        //   question: 'What are your audience’s biggest fears when it comes to their industry or career?',
+        //   type: 'tagInput',
+        //   description: 'Recognize the concerns that may hold your audience back.',
+        //   minSelections: 3,
+        //   maxSelections: 5,
+        //   suggestions: [
+        //     'Losing relevance in the industry', 'Struggling to stand out', 'Failing to generate enough revenue', 'Losing job security',
+        //     'Being seen as an imposter'
+        //   ]
+        // },
         {
           id: 'audienceGoals',
           question: 'What are the primary goals your audience wants to achieve?',
           type: 'tagInput',
           description: 'Determine the aspirations that drive your audience forward.',
-          minSelections: 3,
-          maxSelections: 5,
+          minSelections: 2,
+          maxSelections: 3,
           suggestions: [
             'Building a strong personal brand', 'Getting promoted to leadership', 'Raising funding for their startup',
             'Becoming a sought-after speaker', 'Mastering digital marketing'
@@ -139,20 +139,20 @@ export const sections = [
       title: 'Executive Persona & Positioning',
       description: "Let's define how you want to be perceived on LinkedIn.",
       questions: [
-        {
-          id: 'expertiseAreas',
-          question: 'Which key areas of expertise do you want to be recognized for on LinkedIn?',
-          type: 'tagInput',
-          description: 'These will become your content pillars on LinkedIn.',
-          minSelections: 3,
-          maxSelections: 5,
-          suggestions: [
-            'Leadership', 'Strategy', 'Innovation', 'Digital Transformation',
-            'Marketing', 'Sales', 'Finance', 'Operations', 'Human Resources',
-            'Customer Experience', 'Product Development', 'Sustainability',
-            'AI/Machine Learning', 'Blockchain', 'Industry Insights'
-          ]
-        },
+        // {
+        //   id: 'expertiseAreas',
+        //   question: 'Which key areas of expertise do you want to be recognized for on LinkedIn?',
+        //   type: 'tagInput',
+        //   description: 'These will become your content pillars on LinkedIn.',
+        //   minSelections: 3,
+        //   maxSelections: 5,
+        //   suggestions: [
+        //     'Leadership', 'Strategy', 'Innovation', 'Digital Transformation',
+        //     'Marketing', 'Sales', 'Finance', 'Operations', 'Human Resources',
+        //     'Customer Experience', 'Product Development', 'Sustainability',
+        //     'AI/Machine Learning', 'Blockchain', 'Industry Insights'
+        //   ]
+        // },
         {
           id: 'uniquePerspective',
           question: 'How do you naturally express your insights?',
@@ -170,8 +170,8 @@ export const sections = [
           question: 'What topics do you consistently post about?',
           type: 'tagInput',
           description: 'Define the recurring themes that shape your LinkedIn content.',
-          minSelections: 3,
-          maxSelections: 5,
+          minSelections: 2,
+          maxSelections: 3,
           suggestions: [
             'Startup Growth & Bootstrapping', 'AI in Marketing & Tech Trends', 'Leadership & Team Building',
             'Personal Branding & Career Growth', 'Fundraising & Investor Relations', 'Sales & Business Development'
