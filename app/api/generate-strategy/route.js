@@ -56,30 +56,95 @@ export async function POST(request) {
   }
 }
 
+// // Create the prompt for the Gemini API
+// function createStrategyPrompt(answers) {
+//   return `
+// You are a LinkedIn strategy expert who helps executives and professionals build their personal brand on LinkedIn.
+
+// ### Comprehensive User Profile
+// * Industry: ${getReadableValue(answers.industry, 'industry')}
+// * Professional Role: ${getReadableValue(answers.role, 'role')}
+// * Products/Services: ${formatArrayAnswer(answers.offering)}
+// * Primary LinkedIn Goal: ${getReadableValue(answers.primaryGoal, 'primaryGoal')}
+// * Target Audience: ${getReadableValue(answers.targetAudience, 'targetAudience')}
+// * Commercial Objectives: ${getReadableValue(answers.commercialObjectives, 'commercialObjectives')} 
+// * Communication Style: ${getReadableValue(answers.uniquePerspective, 'uniquePerspective')}
+// * Content Tone/Feel: ${getReadableValue(answers.userVoice, 'userVoice')}
+// * Posting Frequency: ${getReadableValue(answers.postingFrequency, 'postingFrequency')}
+
+
+// ### Audience Insights
+// * Pain Points/Challenges: ${formatArrayAnswer(answers.audienceChallenges)}
+// * Fears: ${formatArrayAnswer(answers.audienceFears)}
+// * Goals: ${formatArrayAnswer(answers.audienceGoals)}
+
+// ### Content Strategy Foundation
+// * Expertise Areas: ${formatArrayAnswer(answers.expertiseAreas)}
+// * Content Pillars: ${formatArrayAnswer(answers.contentPillars)}
+// * Preferred Content Types: ${formatContentTypes(answers.contentTypes)}
+// * Engagement Preferences: ${formatArrayAnswer(answers.engagementStyle)}
+
+// ### Task
+// Based on this user profile, create a comprehensive LinkedIn strategy in two main parts:
+
+// ## PART 1: STRATEGIC FOUNDATION
+// 1. **Executive Positioning Summary**: A compelling paragraph describing how the user should position themselves on LinkedIn based on their goals, expertise, and target audience.
+
+// 2. **Content Pillars Analysis**: For each of the user's content pillars, provide:
+//    - Clear definition of the pillar and its scope
+//    - Why this pillar will resonate with their target audience
+//    - How this pillar supports their primary goal
+//    - 3 specific content ideas for this pillar
+
+// 3. **Engagement Strategy**: Tactical recommendations for how they should engage with their audience based on their preferences.
+
+// 4. **Growth & Measurement Plan**: Specific metrics to track based on their primary goals and realistic growth targets.
+
+// ## PART 2: FOUR-WEEK CONTENT CALENDAR
+// Create a detailed 4-week content plan with ${getPostingFrequencyCount(answers.postingFrequency)} posts per week (Monday-Friday).
+
+// Format the content plan as a clear markdown table with these columns:
+// | Week - Day | Pillar | Topic | Approach | Content Type |
+// | ---------- | ------ | ----- | -------- | ------------ |
+// | Week 1 - Monday | Pillar Name | Topic description | Detailed approach | Format details |
+
+// In the 'Approach' column, explain the specific angle the post will take (educational, case study, myth-busting, etc.) with details on what points it will cover.
+
+// In the 'Content Type' column, specify both the format (text, carousel, image, etc.) and what specific elements the content should include.
+
+// Include at least one promotional post per week and one value-add resource (checklist, template, guide, etc.) per week.
+
+// ### Output Formatting
+// - Format your response as clean, readable markdown
+// - Use headers, subheaders, and bullet points for clarity
+// - Make all tables properly formatted with markdown syntax
+// - Ensure every recommendation is specific and actionable
+
+// Make this strategy both strategic and practical - something the user can implement immediately to build their LinkedIn presence.
+// `;
+// }
+
+// altered prompt to account for removed questions
+
 // Create the prompt for the Gemini API
 function createStrategyPrompt(answers) {
   return `
 You are a LinkedIn strategy expert who helps executives and professionals build their personal brand on LinkedIn.
 
 ### Comprehensive User Profile
-* Industry: ${getReadableValue(answers.industry, 'industry')}
 * Professional Role: ${getReadableValue(answers.role, 'role')}
-* Products/Services: ${formatArrayAnswer(answers.offering)}
 * Primary LinkedIn Goal: ${getReadableValue(answers.primaryGoal, 'primaryGoal')}
 * Target Audience: ${getReadableValue(answers.targetAudience, 'targetAudience')}
-* Commercial Objectives: ${getReadableValue(answers.commercialObjectives, 'commercialObjectives')} 
+* Commercial Objectives: ${getReadableValue(answers.commercialObjectives, 'commercialObjectives')}
 * Communication Style: ${getReadableValue(answers.uniquePerspective, 'uniquePerspective')}
 * Content Tone/Feel: ${getReadableValue(answers.userVoice, 'userVoice')}
 * Posting Frequency: ${getReadableValue(answers.postingFrequency, 'postingFrequency')}
 
-
 ### Audience Insights
 * Pain Points/Challenges: ${formatArrayAnswer(answers.audienceChallenges)}
-* Fears: ${formatArrayAnswer(answers.audienceFears)}
 * Goals: ${formatArrayAnswer(answers.audienceGoals)}
 
 ### Content Strategy Foundation
-* Expertise Areas: ${formatArrayAnswer(answers.expertiseAreas)}
 * Content Pillars: ${formatArrayAnswer(answers.contentPillars)}
 * Preferred Content Types: ${formatContentTypes(answers.contentTypes)}
 * Engagement Preferences: ${formatArrayAnswer(answers.engagementStyle)}
@@ -88,13 +153,13 @@ You are a LinkedIn strategy expert who helps executives and professionals build 
 Based on this user profile, create a comprehensive LinkedIn strategy in two main parts:
 
 ## PART 1: STRATEGIC FOUNDATION
-1. **Executive Positioning Summary**: A compelling paragraph describing how the user should position themselves on LinkedIn based on their goals, expertise, and target audience.
+1. **Executive Positioning Summary**: A compelling paragraph describing how the user should position themselves on LinkedIn based on their professional role, goals, content pillars, and target audience. Use their content pillars as their domain of expertise - DO NOT use placeholders or ask for more information.
 
 2. **Content Pillars Analysis**: For each of the user's content pillars, provide:
-   - Clear definition of the pillar and its scope
-   - Why this pillar will resonate with their target audience
-   - How this pillar supports their primary goal
-   - 3 specific content ideas for this pillar
+ - Clear definition of the pillar and its scope
+ - Why this pillar will resonate with their target audience
+ - How this pillar supports their primary goal
+ - 3 specific content ideas for this pillar
 
 3. **Engagement Strategy**: Tactical recommendations for how they should engage with their audience based on their preferences.
 
@@ -102,17 +167,20 @@ Based on this user profile, create a comprehensive LinkedIn strategy in two main
 
 ## PART 2: FOUR-WEEK CONTENT CALENDAR
 Create a detailed 4-week content plan with ${getPostingFrequencyCount(answers.postingFrequency)} posts per week (Monday-Friday).
-
 Format the content plan as a clear markdown table with these columns:
 | Week - Day | Pillar | Topic | Approach | Content Type |
 | ---------- | ------ | ----- | -------- | ------------ |
 | Week 1 - Monday | Pillar Name | Topic description | Detailed approach | Format details |
 
 In the 'Approach' column, explain the specific angle the post will take (educational, case study, myth-busting, etc.) with details on what points it will cover.
-
 In the 'Content Type' column, specify both the format (text, carousel, image, etc.) and what specific elements the content should include.
-
 Include at least one promotional post per week and one value-add resource (checklist, template, guide, etc.) per week.
+
+### IMPORTANT INSTRUCTIONS
+- DO NOT use placeholders like [SPECIFY INDUSTRY] or ask for more information in your response.
+- Use the content pillars provided by the user as their domain of expertise.
+- Make all recommendations specific and actionable based on the information provided.
+- If you need to reference the user's professional domain, refer to their content pillars directly.
 
 ### Output Formatting
 - Format your response as clean, readable markdown
